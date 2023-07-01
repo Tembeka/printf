@@ -11,8 +11,8 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0, c = va_arg(args, int);
-	const char *s = va_arg(args, const char *), *ptr = format;
+	int count = 0;
+	const char *ptr = format;
 
 	va_start(args, format);
 	if (format == NULL)
@@ -24,11 +24,15 @@ int _printf(const char *format, ...)
 			ptr++;
 			if (*ptr == 'c')
 			{
+				int c = va_arg(args, int);
+
 				putchar(c);
 				count++;
 			}
 			else if (*ptr == 's')
 			{
+				const char *s = va_arg(args, const char *);
+
 				while (*s != '\0')
 				{
 					putchar(*s);
